@@ -3,6 +3,7 @@ import Config from "./config";
 import BotCommands from "./commands";
 import Interactions from "./interactions";
 import SpamListener from "./listeners/spam.listener";
+import writeBotNameToConsole from "./plugins/figlet";
 class Bot {
   private token: string | undefined = process.env.BOT_TOKEN;
   constructor() {
@@ -29,7 +30,8 @@ class Bot {
   //bot listeners
   listeners() {
     this.client.on("ready", () => {
-      console.log("Bot is active");
+      //write bot name to console
+      writeBotNameToConsole();
     });
     this.client.on("messageCreate", (msg: Message) => {
       let fromRobber = this.client.user?.id === msg.author?.id;
