@@ -4,8 +4,8 @@ export default class BaseService {
   constructor(httpClient: AxiosInstance) {
     this.httpClient = httpClient;
   }
-  get(params: object, url: string) {
-    this.httpClient.get(url, {
+  async get(url: string, params?: object) {
+    return this.httpClient.get<unknown>(url, {
       params: JSON.stringify(params),
     });
   }

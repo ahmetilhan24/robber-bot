@@ -1,5 +1,6 @@
-import { Client, Interaction} from "discord.js";
+import { Client, Interaction } from "discord.js";
 import COMMANDS from "../constants/command.constants";
+import CryptoController from "../controllers/crypto.controller";
 
 export default class Interactions {
   client: Client;
@@ -11,10 +12,7 @@ export default class Interactions {
       if (interaction.isCommand()) {
         switch (interaction.commandName) {
           case COMMANDS.crypto:
-            interaction.reply({
-              content: "Borsayı getiriyorum",
-              fetchReply: true,
-            });
+            new CryptoController(this.client, interaction).sendAllResult();
             break;
           default:
             break;

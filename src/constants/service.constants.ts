@@ -1,4 +1,4 @@
-import IBaseService from "../interfaces/base.service";
+import IBaseService from "../interfaces/base-service.interface";
 
 export const TIMEOUT: number = 10000;
 export const BASE_SERVICES: IBaseService[] = [

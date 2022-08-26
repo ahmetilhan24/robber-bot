@@ -5,7 +5,7 @@ class CryptoCommand {
   command: ICommand = {
     name: "crypto",
     description: "command for crypto",
-    run: (msg, args) => console.log(msg, args),
+    run: (client, interaction) => console.log(client, interaction),
   };
 }
 
