@@ -1,7 +1,8 @@
-import { Client } from "discord.js";
+import { Client, Partials, GatewayIntentBits, Message } from "discord.js";
 import Config from "./config";
 import BotCommands from "./commands";
 import Interactions from "./interactions";
+import SpamListener from "./listeners/spam.listener";
 class Bot {
   private token: string | undefined = process.env.BOT_TOKEN;
   constructor() {
@@ -9,8 +10,15 @@ class Bot {
   }
 
   //create client
-  client: Client = new Client({
-    intents: [],
+  public client: Client = new Client({
+    partials: [Partials.Channel, Partials.Message, Partials.Reaction],
+    intents: [
+      GatewayIntentBits.Guilds,
+      GatewayIntentBits.GuildMessages,
+      GatewayIntentBits.MessageContent,
+      GatewayIntentBits.DirectMessages,
+      GatewayIntentBits.GuildBans,
+    ],
   });
 
   //auth
@@ -23,6 +31,9 @@ class Bot {
     this.client.on("ready", () => {
       console.log("Bot is active");
     });
+    this.client.on("messageCreate", (msg: Message) => {
+      new SpamListener(this.client, msg);
+    });
   }
 
   //bot init
@@ -32,10 +43,11 @@ class Bot {
       return;
     }
     this.listeners();
-    new Interactions(this.client).create();
     new BotCommands(this.client).init();
+    new Interactions(this.client).create();
   }
 }
 
 // Start bot
-new Bot().init();
+const robber = new Bot();
+robber.init();
