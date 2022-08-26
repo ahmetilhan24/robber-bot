@@ -12,7 +12,8 @@ export default class Interactions {
       if (interaction.isCommand()) {
         switch (interaction.commandName) {
           case COMMANDS.crypto:
-            new CryptoController(this.client, interaction).sendAllResult();
+            const controller = new CryptoController(this.client, interaction);
+            controller.sendAllResult();
             break;
           default:
             break;
