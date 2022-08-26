@@ -20,7 +20,6 @@ export default class CryptoController {
       offset: "0",
     };
     const res: AxiosResponse | undefined = await CryptoService.get("", params);
-    console.log(res.data);
     if (res.status !== 200) {
       throw Error(`Service error ${res.data}`);
     }
