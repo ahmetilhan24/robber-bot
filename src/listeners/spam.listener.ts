@@ -8,9 +8,7 @@ export default class SpamListener {
   constructor(client: Client, msg: Message) {
     this.client = client;
     this.msg = msg;
-    this.init();
   }
-
   init() {
     this.findSpam();
   }
