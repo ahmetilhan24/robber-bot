@@ -4,6 +4,13 @@
   "main": "./dist/index.js",
   "repository": "https://github.com/ahmetilhan24/robber-bot.git",
   "author": "Ahmet ilhan <ahmetilhan.dev@gmail.com>",
+  "keywords": [
+    "discord bot",
+    "bot",
+    "discord",
+    "spam filter bot for discord",
+    "discord spam bot"
+  ],
   "license": "MIT",
   "engines": {
     "node": ">=16"

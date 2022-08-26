@@ -12,9 +12,15 @@ export default class SpamListener {
   init() {
     this.findSpam();
   }
-  findSpam() {
+  async findSpam() {
     const words: string[] = unwantedWords;
-    const isSpam: boolean = words.some((item) => item === this.msg.content);
-    if (isSpam) this.msg.reply(quickMessageConstants.UNWANTED_WORD);
+    const isSpam: boolean[] = await Promise.all(
+      this.msg.content.split(" ").map((msg) => {
+        return words.some((item) => item === msg);
+      })
+    );
+    if (isSpam.some((item) => item)) {
+      this.msg.reply(quickMessageConstants.UNWANTED_WORD);
+    }
   }
 }
