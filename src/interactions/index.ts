@@ -1,4 +1,4 @@
-import { Client, Interaction, Message } from "discord.js";
+import { Client, Interaction} from "discord.js";
 import COMMANDS from "../constants/command.constants";
 
 export default class Interactions {
