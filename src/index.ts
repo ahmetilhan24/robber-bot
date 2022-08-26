@@ -1,6 +1,7 @@
 import { Client } from "discord.js";
 import Config from "./config";
 import BotCommands from "./commands";
+import Interactions from "./interactions";
 class Bot {
   private token: string | undefined = process.env.BOT_TOKEN;
   constructor() {
@@ -31,6 +32,7 @@ class Bot {
       return;
     }
     this.listeners();
+    new Interactions(this.client).create();
     new BotCommands(this.client).init();
   }
 }
