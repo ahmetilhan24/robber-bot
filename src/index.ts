@@ -1,11 +1,10 @@
 import { Client } from "discord.js";
 import Config from "./config";
-
+import BotCommands from "./commands";
 class Bot {
   private token: string | undefined = process.env.BOT_TOKEN;
   constructor() {
     Config.init();
-    this.init();
   }
 
   //create client
@@ -32,8 +31,9 @@ class Bot {
       return;
     }
     this.listeners();
+    new BotCommands(this.client).init();
   }
 }
 
 // Start bot
-new Bot();
+new Bot().init();
