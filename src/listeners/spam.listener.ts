@@ -15,7 +15,7 @@ export default class SpamListener {
   async findSpam() {
     const words: string[] = unwantedWords;
     const isSpam: boolean[] = await Promise.all(
-      this.msg.content.split(" ").map((msg) => {
+      this.msg.content.trim().split(" ").map((msg) => {
         return words.some((item) => item === msg);
       })
     );
