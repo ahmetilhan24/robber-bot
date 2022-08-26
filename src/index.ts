@@ -32,6 +32,8 @@ class Bot {
       console.log("Bot is active");
     });
     this.client.on("messageCreate", (msg: Message) => {
+      let fromRobber = this.client.user?.id === msg.author?.id;
+      if (fromRobber) return;
       new SpamListener(this.client, msg);
     });
   }
