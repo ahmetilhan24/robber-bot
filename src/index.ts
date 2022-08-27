@@ -4,6 +4,7 @@ import BotCommands from "./commands";
 import Interactions from "./interactions";
 import SpamListener from "./listeners/spam.listener";
 import writeBotNameToConsole from "./plugins/figlet";
+import MentionListener from "./listeners/mention.listener";
 class Bot {
   private token: string | undefined = process.env.BOT_TOKEN;
   constructor() {
@@ -37,7 +38,9 @@ class Bot {
       let fromRobber = this.client.user?.id === msg.author?.id;
       if (fromRobber) return;
       const spamListener = new SpamListener(this.client, msg);
+      const mentionListener = new MentionListener(this.client, msg);
       spamListener.init();
+      mentionListener.init();
     });
   }
 
