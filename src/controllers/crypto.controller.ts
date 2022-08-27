@@ -12,12 +12,7 @@ export default class CryptoController {
   async sendAllResult() {
     const params = {
       referenceCurrencyUuid: "yhjMzLPhuIDl",
-      timePeriod: "24h",
-      "tiers[0]": "1",
-      orderBy: "marketCap",
-      orderDirection: "desc",
-      limit: "10",
-      offset: "0",
+      limit: "20",
     };
     const res: AxiosResponse | undefined = await CryptoService.get("", params);
     if (res.status !== 200) {
@@ -35,11 +30,20 @@ export default class CryptoController {
       ]);
       const extractedMessage = await Promise.all(
         coins.map(async (item) => {
-          return ` ${item.symbol} ${item.name}: ${item.price},`;
+          return `**${item.symbol} ${item.name}**: ${item.price},`;
         })
       );
-
-      this.interaction.reply(JSON.stringify(extractedMessage));
+      let messageContent: string = "";
+      extractedMessage.forEach((item, index) => {
+        messageContent +=
+          item +
+          `
+`;
+        if (index + 1 === extractedMessage.length) {
+          //@ts-ignore
+          this.interaction.reply(messageContent);
+        }
+      });
     }
   }
 }

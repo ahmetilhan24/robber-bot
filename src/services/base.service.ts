@@ -6,7 +6,7 @@ export default class BaseService {
   }
   async get(url: string, params?: object) {
     return this.httpClient.get<unknown>(url, {
-      params: JSON.stringify(params),
+      params: params,
     });
   }
 }
