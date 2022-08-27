@@ -15,6 +15,14 @@ export default class Interactions {
             const controller = new CryptoController(this.client, interaction);
             controller.sendAllResult();
             break;
+          case COMMANDS.help:
+            interaction.reply(`
+            Supported commands:
+
+**/crypto**: Get popular crypto status
+**/help**: Get help
+            `);
+            break;
           default:
             break;
         }

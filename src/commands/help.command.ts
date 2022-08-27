@@ -1,13 +1,13 @@
 import COMMANDS from "../constants/command.constants";
 import ICommand from "../interfaces/command.interface";
 
-class CryptoCommand {
+class HelpCommand {
   constructor() {}
   command: ICommand = {
-    name: COMMANDS.crypto,
-    description: "command for crypto",
+    name: COMMANDS.help,
+    description: "command for help",
     run: (client, interaction) => console.log(client, interaction),
   };
 }
 
-export default new CryptoCommand();
+export default new HelpCommand();
