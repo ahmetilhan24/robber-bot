@@ -16,5 +16,11 @@ _*Robots or bots cannot be trusted.*_
 ### Commands
 
     /crypto => Get Crypto Status
+    /help => get all commands
+
+### What can Robber answer?
+- how are you?
+- oh shit
+- please do not cry
 
 _Powered by Ahmet ilhan_
