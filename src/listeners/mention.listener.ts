@@ -18,8 +18,8 @@ export default class MentionListener {
     if (isMention) {
       const question = Object.keys(MENTIONS).find(
         (key: string) =>
-          (this.msg.content.split(">")[1]?.trim() ||
-            this.msg.content.split("robber")[1]?.trim()) === key
+          (this.msg.content.toLowerCase().split(">")[1]?.trim() ||
+            this.msg.content.toLowerCase().split("robber")[1]?.trim()) === key
       );
       if (!question) {
         this.msg.reply("Sir");
